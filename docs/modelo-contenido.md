@@ -1,6 +1,6 @@
 # Modelo de contenido
 
-Define los *content collections* de Astro para meditaciones y entradas de blog. Ambas colecciones viven en `src/content/` y se validan con `zod` en `src/content/config.ts`.
+Define los *content collections* de Astro para meditaciones y entradas de blog. Ambas colecciones viven en `src/content/`, se cargan con el loader `glob()` y se validan con `zod` en `src/content.config.ts` (Astro 7).
 
 ## Colección: `meditaciones`
 
@@ -15,15 +15,16 @@ Ruta: `src/content/meditaciones/*.md`
 | `category` | enum | ✅ | `sueño` \| `ansiedad` \| `estrés` \| `respiración` \| `principiantes` |
 | `coverImage` | image | opcional | Imagen de portada |
 | `publishDate` | date | ✅ | Fecha de publicación |
-| `featured` | boolean | opcional (default `false`) | Destacar en home |
 | `tags` | string[] | opcional | Etiquetas adicionales |
 
 ```ts
-// src/content/config.ts (fragmento)
-import { defineCollection, z } from 'astro:content';
+// src/content.config.ts (fragmento)
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const meditaciones = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/meditaciones' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
@@ -32,11 +33,12 @@ const meditaciones = defineCollection({
     category: z.enum(['sueño', 'ansiedad', 'estrés', 'respiración', 'principiantes']),
     coverImage: image().optional(),
     publishDate: z.date(),
-    featured: z.boolean().default(false),
     tags: z.array(z.string()).optional(),
   }),
 });
 ```
+
+> No existe un campo para elegir qué meditación se muestra en el home: la "meditación del día" rota entre **todas** las meditaciones (ver [arquitectura](./arquitectura.md#rotación-de-meditación-del-día)).
 
 ## Colección: `blog`
 
@@ -53,8 +55,9 @@ Ruta: `src/content/blog/*.md`
 | `draft` | boolean | opcional (default `false`) | Ocultar del sitio si es borrador |
 
 ```ts
+// src/content.config.ts (continuación)
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
@@ -79,7 +82,6 @@ audioFile: "/audio/meditaciones/respiracion-manana.mp3"
 duration: 600
 category: "respiración"
 publishDate: 2026-09-19
-featured: true
 tags: ["mañana", "principiantes"]
 ---
 
@@ -104,4 +106,4 @@ Contenido del artículo en Markdown...
 
 - Ubicación: `public/audio/meditaciones/`
 - Nombre: `kebab-case`, sin espacios ni tildes (ej. `respiracion-manana.mp3`)
-- Formato recomendado: MP3, 128–192 kbps (balance calidad/peso para carga rápida)
+- Formato (primera fase): MP3, 128–192 kbps (balance calidad/peso para carga rápida)

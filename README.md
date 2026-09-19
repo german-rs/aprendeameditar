@@ -3,22 +3,22 @@
 Aplicación web para descubrir y escuchar meditaciones guiadas en español, con un blog para generar contenido y tráfico orgánico.
 
 🌐 Sitio: https://aprendeameditar.cl
-📦 Stack: Astro + React (islands) + TypeScript
+📦 Stack: Astro 7 + React (islands) + Tailwind CSS + TypeScript
 🚀 Despliegue: GitHub Pages + Cloudflare (DNS)
 
 ## Documentación
 
-Toda la documentación de desarrollo vive en [`docs/`](./docs):
-
 - [Arquitectura](./docs/arquitectura.md) — stack, estructura de carpetas, decisiones técnicas
 - [Modelo de contenido](./docs/modelo-contenido.md) — cómo se estructuran las meditaciones y los posts del blog
+- [Guía de estilo del reproductor](./docs/guia-estilo-reproductor.md) — tokens de color y tipografía, glassmorfismo
+- [Marca](./BRAND.md) — misión, voz y tono, identidad visual
 - [Despliegue](./docs/despliegue.md) — GitHub Pages + Cloudflare DNS, CI/CD
 - [Roadmap](./docs/roadmap.md) — fases del proyecto
 - [Guía de contribución](./CONTRIBUTING.md) — cómo agregar contenido y flujo de trabajo
 
 ## Requisitos
 
-- Node.js 18+ (recomendado 20 LTS)
+- Node.js 22.12 o superior
 - npm
 
 ## Primeros pasos
@@ -52,10 +52,11 @@ Detalle completo en [docs/arquitectura.md](./docs/arquitectura.md).
 │   ├── components/
 │   │   ├── react/            # islas interactivas (reproductor, filtros)
 │   │   └── astro/            # componentes estáticos
-│   ├── content/               # Content Collections (meditaciones y blog)
+│   ├── content/               # Contenido en Markdown (meditaciones y blog)
+│   ├── content.config.ts      # schemas de las Content Collections
 │   ├── layouts/
 │   ├── pages/
-│   └── styles/
+│   └── styles/                # global.css (Tailwind y tokens de diseño)
 ├── docs/                      # documentación del proyecto
 └── astro.config.mjs
 ```

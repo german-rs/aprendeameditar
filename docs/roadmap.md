@@ -6,19 +6,19 @@
 - [x] Dominio `aprendeameditar.cl` configurado
 - [x] Cloudflare como DNS
 - [ ] Documentación base del proyecto
-- [ ] Pipeline de GitHub Actions funcionando
+- [ ] Pipeline de GitHub Actions funcionando (build y deploy automático a producción)
 
 ## Fase 1 — MVP
 
+- [ ] Configurar Tailwind CSS (plugin de Vite), tokens de diseño y tipografía en `src/styles/global.css`
 - [ ] Layout base (header, footer, navegación)
-- [ ] Content Collections de `meditaciones` y `blog`
-- [ ] Reproductor de audio (React island) — play/pause, progreso, volumen
-- [ ] Home (`/`) carga el reproductor completo con la meditación del día lista para reproducir, sin pasos previos
-- [ ] Listado y detalle de meditaciones (por categoría)
-- [ ] Listado y detalle de posts del blog
-- [ ] 5–10 meditaciones y 3–5 posts de contenido inicial
+- [ ] Content Collections de `meditaciones` y `blog` (`src/content.config.ts`)
+- [ ] Reproductor de audio completo (React island) — play/pause, progreso, volumen
+- [ ] Home (`/`) carga el reproductor completo con la meditación del día lista para reproducir, sin pasos previos, junto con `h1`, descripción breve y enlaces a categorías y blog
+- [ ] Listado y detalle de meditaciones (por categoría), con el reproductor completo embebido en el detalle
+- [ ] Listado y detalle de posts del blog (contenido estilizado con `prose`)
+- [ ] 5–10 meditaciones (MP3) y 3–5 posts de contenido inicial
 - [ ] SEO básico: metadatos, sitemap, Open Graph
-- [ ] Deploy automático a producción
 
 ## Fase 2 — Mejoras
 
