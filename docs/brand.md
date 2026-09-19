@@ -34,14 +34,14 @@ Cercano y coloquial — como un amigo que te acompaña, no un instructor que cor
 
 Figura de meditación en una sola línea continua (trazo tipo caligrafía, sin cierres) — evoca a alguien sentado con las piernas cruzadas. Es la única pieza de marca definida hasta ahora; todavía no existe un wordmark.
 
-- **Color**: el isotipo no tiene un color propio — al ser una figura simple, hereda los tokens ya definidos en la [guía de estilo del reproductor](./docs/guia-estilo-reproductor.md) según el fondo donde aparezca:
+- **Color**: el isotipo no tiene un color propio — al ser una figura simple, hereda los tokens ya definidos en la [guía de estilo del reproductor](./guia-estilo-reproductor.md) según el fondo donde aparezca:
   - Sobre fondo oscuro/vidrio oscuro → `--accent` claro (`#9B7EFF`) o blanco puro
   - Sobre fondo claro/vidrio claro → `--accent` (`#7C5CFA`) o `--text-primary` (`#2A1F4D`)
   - Se mantiene siempre monocromático — al ser un trazo continuo, no se le aplican degradados ni colores mezclados dentro de la misma figura.
 - **Espacio de protección**: dejar alrededor del isotipo un margen mínimo equivalente al grosor del trazo más ancho de la figura, para que no compita con otros elementos cercanos.
 - **Tamaño mínimo**: el trazo fino puede perderse a tamaños muy pequeños (favicon, ícono de pestaña). Probar legibilidad por debajo de 32px antes de usarlo así; si se pierde detalle, usar una versión simplificada solo para esos casos.
 - **Qué no hacer**: no rotar la figura, no rellenar el interior de los loops, no aplicarle sombra o glow pesado (rompe la limpieza del trazo), no estirarla fuera de su proporción original.
-- **Formato**: hoy existe como PNG. Para usarlo en el sitio (favicon, header, distintos tamaños) conviene tener una versión vectorial (SVG) — al ser una figura de una sola línea, debería vectorizarse limpio y quedar liviano.
+- **Formato**: PNG, definitivo. Se usa directamente en favicon, header y demás tamaños del sitio sin conversión a otro formato.
 
 ### Wordmark (pendiente)
 
@@ -55,7 +55,7 @@ Se reutilizan los mismos dos tipos ya definidos para el reproductor, para que bl
 
 ### Color
 
-La paleta nocturna violeta/azul definida para el reproductor (`docs/guia-estilo-reproductor.md`) es la paleta de marca completa, no solo la del componente — se usa igual en blog, header, footer y cualquier material de marca, para que el sitio se sienta un solo producto y no "un reproductor" más "un blog" separados.
+La paleta nocturna violeta/azul definida para el reproductor (`./guia-estilo-reproductor.md`) es la paleta de marca completa, no solo la del componente — se usa igual en blog, header, footer y cualquier material de marca, para que el sitio se sienta un solo producto y no "un reproductor" más "un blog" separados.
 
 ### Imágenes
 
@@ -73,6 +73,6 @@ Pensados para principiantes y para tráfico orgánico (SEO):
 ## Terminología consistente
 
 - "Meditaciones", no "sesiones" ni "clases"
-- "Meditación del día" — término fijo para la destacada del home (ver `docs/arquitectura.md`)
+- "Meditación del día" — término fijo para la destacada del home (ver `./arquitectura.md`)
 - Evitar la palabra "mindfulness" sin explicarla la primera vez que aparece en un texto
-- Categorías del catálogo: sueño, ansiedad, estrés, respiración, principiantes (mismas del schema de contenido, ver `docs/modelo-contenido.md`)
+- Categorías del catálogo: sueño, ansiedad, estrés, respiración, principiantes (mismas del schema de contenido, ver `./modelo-contenido.md`)

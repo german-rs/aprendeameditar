@@ -2,7 +2,7 @@
 
 ## Requisitos
 
-- Node.js 18+ (recomendado 20 LTS)
+- Node.js 22.12 o superior
 - npm
 
 ## Flujo de trabajo local

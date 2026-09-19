@@ -11,7 +11,7 @@ Aplicación web para descubrir y escuchar meditaciones guiadas en español, con 
 - [Arquitectura](./docs/arquitectura.md) — stack, estructura de carpetas, decisiones técnicas
 - [Modelo de contenido](./docs/modelo-contenido.md) — cómo se estructuran las meditaciones y los posts del blog
 - [Guía de estilo del reproductor](./docs/guia-estilo-reproductor.md) — tokens de color y tipografía, glassmorfismo
-- [Marca](./BRAND.md) — misión, voz y tono, identidad visual
+- [Marca](./docs/brand.md) — misión, voz y tono, identidad visual
 - [Despliegue](./docs/despliegue.md) — GitHub Pages + Cloudflare DNS, CI/CD
 - [Roadmap](./docs/roadmap.md) — fases del proyecto
 - [Guía de contribución](./CONTRIBUTING.md) — cómo agregar contenido y flujo de trabajo

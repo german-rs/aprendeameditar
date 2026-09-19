@@ -11,7 +11,7 @@ Antes de tocar código, lee la documentación del proyecto:
 - [`docs/arquitectura.md`](./docs/arquitectura.md) — stack, modo de renderizado, estructura de carpetas, decisión de producto del home
 - [`docs/modelo-contenido.md`](./docs/modelo-contenido.md) — schemas de las Content Collections (`meditaciones`, `blog`)
 - [`docs/guia-estilo-reproductor.md`](./docs/guia-estilo-reproductor.md) — tokens de color/tipografía (su tabla de tokens es la fuente de verdad), glassmorfismo
-- [`BRAND.md`](./BRAND.md) — misión, voz y tono, identidad visual, terminología
+- [`docs/brand.md`](./docs/brand.md) — misión, voz y tono, identidad visual, terminología
 - [`docs/despliegue.md`](./docs/despliegue.md) — GitHub Actions, dominio personalizado, DNS
 - [`docs/roadmap.md`](./docs/roadmap.md) — fases del proyecto y qué está pendiente
 - [`CONTRIBUTING.md`](./CONTRIBUTING.md) — convención de commits/ramas, cómo agregar meditaciones o posts
