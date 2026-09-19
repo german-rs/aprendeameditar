@@ -15,7 +15,7 @@ El reproductor completo es el formato definido para el MVP: se usa en el home y 
 Como el objetivo del sitio también es tráfico orgánico, el home no es solo un reproductor. Además incluye, en **HTML estático** (indexable aunque el JavaScript del cliente aún no haya cargado):
 
 - Un `h1` que describa el sitio.
-- Una breve descripción de qué es y a quién ayuda, en el tono de la marca (ver [BRAND.md](../BRAND.md)).
+- Una breve descripción de qué es y a quién ayuda, en el tono de la marca (ver [brand.md](./brand.md)).
 - Enlaces a las categorías de meditaciones y al blog, con acceso a sus artículos.
 
 Nada de esto bloquea ni retrasa el acceso al audio: el reproductor sigue siendo el elemento principal del home.
