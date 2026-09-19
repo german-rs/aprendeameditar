@@ -13,6 +13,7 @@
 - [ ] Layout base (header, footer, navegación)
 - [ ] Content Collections de `meditaciones` y `blog`
 - [ ] Reproductor de audio (React island) — play/pause, progreso, volumen
+- [ ] Home (`/`) carga el reproductor completo con la meditación del día lista para reproducir, sin pasos previos
 - [ ] Listado y detalle de meditaciones (por categoría)
 - [ ] Listado y detalle de posts del blog
 - [ ] 5–10 meditaciones y 3–5 posts de contenido inicial

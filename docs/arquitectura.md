@@ -6,6 +6,30 @@ Aprendeameditar.cl es una app web que combina:
 1. Un **reproductor de audios de meditación** organizados por categoría.
 2. Un **blog** para publicar artículos, atraer tráfico orgánico (SEO) y dar contexto a las meditaciones.
 
+## Página de inicio (home)
+
+Decisión de producto: quien entra al sitio debe poder empezar a meditar **de inmediato**, sin navegar primero. Por eso el home (`/`) no es una landing de blog con enlaces — carga directamente el **reproductor completo** (ver [guía de estilo](./guia-estilo-reproductor.md)) con la **meditación del día** lista para reproducir.
+
+Implicaciones:
+- `src/pages/index.astro` renderiza el layout del reproductor completo, no una portada tradicional.
+- La navegación a categorías, blog y demás meditaciones queda accesible desde el mismo home (header o accesos debajo del reproductor), pero sin bloquear el acceso inmediato al audio.
+
+### Rotación de "meditación del día"
+
+El sitio es 100% estático (GitHub Pages, sin backend ni cron jobs), así que la rotación diaria **no depende de un rebuild**: se calcula en el cliente con una función determinística de la fecha, sobre la lista completa de meditaciones que ya viene embebida en el build.
+
+```ts
+// ejemplo: misma meditación para todo el mundo, el mismo día
+function meditacionDelDia(meditaciones: Meditacion[]): Meditacion {
+  const hoy = new Date();
+  const inicioAño = new Date(hoy.getFullYear(), 0, 0);
+  const diaDelAño = Math.floor((+hoy - +inicioAño) / 86_400_000);
+  return meditaciones[diaDelAño % meditaciones.length];
+}
+```
+
+Así, aunque el sitio no se recompile todos los días, la meditación destacada cambia solo con el paso del calendario (misma para todos los visitantes en el mismo día, en su horario local).
+
 ## Stack técnico
 
 | Capa | Elección | Motivo |
@@ -59,7 +83,7 @@ Regla general: preferir componentes `.astro` estáticos; usar React solo cuando 
 │   │   ├── BaseLayout.astro
 │   │   └── BlogPostLayout.astro
 │   ├── pages/
-│   │   ├── index.astro
+│   │   ├── index.astro             # home = reproductor completo con la meditación destacada
 │   │   ├── meditaciones/
 │   │   │   ├── index.astro
 │   │   │   └── [slug].astro
