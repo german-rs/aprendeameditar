@@ -1,46 +1,69 @@
-# Astro Starter Kit: Basics
+# Aprende a Meditar
 
-```sh
-npm create astro@latest -- --template basics
+Aplicación web para descubrir y escuchar meditaciones guiadas en español, con un blog para generar contenido y tráfico orgánico.
+
+🌐 Sitio: https://aprendeameditar.cl
+📦 Stack: Astro + React (islands) + TypeScript
+🚀 Despliegue: GitHub Pages + Cloudflare (DNS)
+
+## Documentación
+
+Toda la documentación de desarrollo vive en [`docs/`](./docs):
+
+- [Arquitectura](./docs/arquitectura.md) — stack, estructura de carpetas, decisiones técnicas
+- [Modelo de contenido](./docs/modelo-contenido.md) — cómo se estructuran las meditaciones y los posts del blog
+- [Despliegue](./docs/despliegue.md) — GitHub Pages + Cloudflare DNS, CI/CD
+- [Roadmap](./docs/roadmap.md) — fases del proyecto
+- [Guía de contribución](./CONTRIBUTING.md) — cómo agregar contenido y flujo de trabajo
+
+## Requisitos
+
+- Node.js 18+ (recomendado 20 LTS)
+- npm
+
+## Primeros pasos
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El sitio queda disponible en `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Comandos
 
-Inside of your Astro project, you'll see the following folders and files:
+| Comando | Acción |
+|---|---|
+| `npm install` | Instala dependencias |
+| `npm run dev` | Servidor de desarrollo en `localhost:4321` |
+| `npm run build` | Genera el sitio estático en `./dist/` |
+| `npm run preview` | Previsualiza el build de producción localmente |
+| `npm run astro ...` | Ejecuta comandos del CLI de Astro |
 
-```text
-/
+## Estructura del proyecto
+
+Detalle completo en [docs/arquitectura.md](./docs/arquitectura.md).
+
+```
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   ├── audio/meditaciones/   # archivos de audio (mp3)
+│   └── images/
+├── src/
+│   ├── components/
+│   │   ├── react/            # islas interactivas (reproductor, filtros)
+│   │   └── astro/            # componentes estáticos
+│   ├── content/               # Content Collections (meditaciones y blog)
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── docs/                      # documentación del proyecto
+└── astro.config.mjs
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Estado del proyecto
 
-## 🧞 Commands
+🟡 Fase inicial — ver [roadmap](./docs/roadmap.md).
 
-All commands are run from the root of the project, from a terminal:
+## Licencia
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Por definir.
