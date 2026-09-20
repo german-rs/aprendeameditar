@@ -46,8 +46,7 @@ Los estilos se escriben **solo con Tailwind CSS v4**: sin CSS vanilla y sin bloq
 @import "tailwindcss";
 @plugin "@tailwindcss/typography"; /* clase `prose` para el contenido del blog */
 
-/* Modo oscuro por clase en <html> (toggle manual, como el mockup) */
-@custom-variant dark (&:where(.dark, .dark *));
+/* Modo oscuro: sigue la preferencia del sistema/navegador (prefers-color-scheme), sin toggle manual */
 
 /* 1) Valores de los tokens por modo (copiados de la tabla de la paleta) */
 :root {
@@ -66,20 +65,22 @@ Los estilos se escriben **solo con Tailwind CSS v4**: sin CSS vanilla y sin bloq
   --blob-3: #FFC9E8;
 }
 
-.dark {
-  --bg-base: #0B0818;
-  --accent: #9B7EFF;
-  --accent-soft: rgba(155,126,255,.25);
-  --text-primary: #F1EDFF;
-  --text-secondary: #B3A6E0;
-  --glass-bg: rgba(255,255,255,.07);
-  --glass-border: rgba(255,255,255,.16);
-  --glass-shadow: rgba(0,0,0,.45);
-  --ghost-bg: rgba(255,255,255,.06);
-  --track-bg: rgba(255,255,255,.14);
-  --blob-1: #4B3494;
-  --blob-2: #2B2568;
-  --blob-3: #6A2E5C;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-base: #0B0818;
+    --accent: #9B7EFF;
+    --accent-soft: rgba(155,126,255,.25);
+    --text-primary: #F1EDFF;
+    --text-secondary: #B3A6E0;
+    --glass-bg: rgba(255,255,255,.07);
+    --glass-border: rgba(255,255,255,.16);
+    --glass-shadow: rgba(0,0,0,.45);
+    --ghost-bg: rgba(255,255,255,.06);
+    --track-bg: rgba(255,255,255,.14);
+    --blob-1: #4B3494;
+    --blob-2: #2B2568;
+    --blob-3: #6A2E5C;
+  }
 }
 
 /* 2) Alias de Tailwind: cada token pasa a ser una utilidad */
@@ -112,9 +113,9 @@ Los estilos se escriben **solo con Tailwind CSS v4**: sin CSS vanilla y sin bloq
 }
 ```
 
-Los valores de `:root` y `.dark` se copian de la tabla de la paleta: si un token cambia, se actualizan ambos lugares en el mismo cambio.
+Los valores de `:root` y del bloque `@media (prefers-color-scheme: dark)` se copian de la tabla de la paleta: si un token cambia, se actualizan ambos lugares en el mismo cambio.
 
-> **Modo oscuro (decisión abierta):** el ejemplo asume un toggle manual con la clase `.dark` en `<html>`, como el mockup. Si se decide seguir solo la preferencia del sistema, los valores oscuros pasan a `@media (prefers-color-scheme: dark) { :root { ... } }` y se elimina el `@custom-variant`. En ambos casos los componentes no usan `dark:`: los tokens cambian de valor solos.
+> **Modo oscuro (decidido):** el sitio sigue la preferencia del sistema/navegador (`prefers-color-scheme`) y se adapta automáticamente; no hay toggle manual ni clase `.dark` en `<html>`. Los componentes no usan `dark:`: los tokens cambian de valor solos.
 
 ### Token → utilidad
 

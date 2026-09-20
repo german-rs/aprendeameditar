@@ -170,5 +170,5 @@ Consideraciones a documentar cuando se implementen:
 - [x] Reproductor: formato completo en home y detalle; sin mini-player en el MVP
 - [x] Estilos: Tailwind CSS v4, sin CSS vanilla (única hoja: `src/styles/global.css`)
 - [x] Meditación del día: rota entre todas las meditaciones; sin campo `featured`
-- [ ] Modo oscuro: solo preferencia del sistema (`prefers-color-scheme`) o toggle manual con clase `.dark` (la guía de estilo asume el toggle, como el mockup)
-- [ ] Herramienta de analítica (Cloudflare Web Analytics / Plausible / GA)
+- [x] Modo oscuro: solo preferencia del sistema (`prefers-color-scheme`) o toggle manual con clase `.dark` (la guía de estilo asume el toggle, como el mockup)
+- [x] Herramienta de analítica (GA)
