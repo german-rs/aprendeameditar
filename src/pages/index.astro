@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+import { getCollection } from 'astro:content';
+const meditaciones = await getCollection('meditaciones');
 ---
 
 <Layout title="Inicio">
   <h1 class="font-display text-3xl">Bienvenido</h1>
+   <p>Meditaciones cargadas: {meditaciones.length}</p>
 </Layout>
