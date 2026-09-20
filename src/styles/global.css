@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Manrope:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Habilita dark: por clase, no solo por preferencia del sistema */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Tipografía: serif cálida para títulos, sans limpia para el resto */
+  --font-display: "Fraunces", serif;
+  --font-sans: "Manrope", sans-serif;
+
+  /* Paleta de marca: violeta/morado profundo */
+  --color-brand-50:  #f2f1fb;
+  --color-brand-100: #e4e2f7;
+  --color-brand-200: #c9c5ef;
+  --color-brand-300: #a89fe3;
+  --color-brand-400: #8676d4;
+  --color-brand-500: #6952c2;
+  --color-brand-600: #5238a8;
+  --color-brand-700: #422d87;
+  --color-brand-800: #302066;
+  --color-brand-900: #1e1447;
+  --color-brand-950: #120c2e;
+
+  /* Paleta nocturna: azul profundo, para fondos/superficies */
+  --color-night-50:  #eef1fb;
+  --color-night-100: #d7ddf3;
+  --color-night-200: #aeb8e6;
+  --color-night-300: #8391d4;
+  --color-night-400: #5c6cc0;
+  --color-night-500: #4150a6;
+  --color-night-600: #323e86;
+  --color-night-700: #283068;
+  --color-night-800: #1b2049;
+  --color-night-900: #10142f;
+  --color-night-950: #080a1b;
+
+  /* Tokens semánticos — utilidades bg-bg, bg-surface, text-text */
+  --color-bg: var(--color-brand-50);
+  --color-surface: #ffffff;
+  --color-text: var(--color-night-950);
+
+}
+
+.dark {
+  --color-bg: var(--color-night-950);
+  --color-surface: var(--color-night-900);
+  --color-text: var(--color-brand-50);
+}
+
+/* Tokens semánticos: lo que realmente usarán los componentes */
+:root {
+  --color-bg: var(--color-brand-50);
+  --color-surface: #ffffff;
+  --color-text: var(--color-night-950);
+}
+
+.dark {
+  --color-bg: var(--color-night-950);
+  --color-surface: var(--color-night-900);
+  --color-text: var(--color-brand-50);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}

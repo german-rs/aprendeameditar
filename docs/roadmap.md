@@ -10,8 +10,8 @@
 
 ## Fase 1 — MVP
 
-- [ ] Configurar Tailwind CSS (plugin de Vite), tokens de diseño y tipografía en `src/styles/global.css`
-- [ ] Layout base (header, footer, navegación)
+- [x] Configurar Tailwind CSS (plugin de Vite), tokens de diseño y tipografía en `src/styles/global.css`
+- [x] Layout base (header, footer, navegación)
 - [ ] Content Collections de `meditaciones` y `blog` (`src/content.config.ts`)
 - [ ] Reproductor de audio completo (React island) — play/pause, progreso, volumen
 - [ ] Home (`/`) carga el reproductor completo con la meditación del día lista para reproducir, sin pasos previos, junto con `h1`, descripción breve y enlaces a categorías y blog
