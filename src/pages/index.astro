@@ -1,11 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-import { getCollection } from 'astro:content';
-const meditaciones = await getCollection('meditaciones');
+// import { getCollection } from 'astro:content';
+// const meditaciones = await getCollection('meditaciones');
+
+import AudioPlayer from '../components/AudioPlayer.tsx';
 ---
 
 <Layout title="Inicio">
   <h1 class="font-display text-3xl">Bienvenido</h1>
-   <p>Meditaciones cargadas: {meditaciones.length}</p>
+   <!-- <p>Meditaciones cargadas: {meditaciones.length}</p> -->
+
+<AudioPlayer
+    client:load
+    title="Respirar en 3 minutos"
+    category="Principiantes"
+    audioSrc="/audio/meditaciones/respirar-en-3-minutos.mp3"
+  />
 </Layout>

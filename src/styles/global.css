@@ -66,3 +66,59 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
 }
+
+/* Sliders estilo Spotify: track fino, thumb oculto hasta hover/focus */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* --- Track --- */
+.range-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: transparent; /* el relleno real lo pone el gradient inline en JSX */
+}
+
+.range-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--color-brand-200);
+}
+
+.range-slider::-moz-range-progress {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--color-brand-600);
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  margin-top: -5px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--color-brand-600);
+  transition: transform 0.15s ease;
+}
+
+.range-slider::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border: none;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--color-brand-600);
+  transition: transform 0.15s ease;
+}
+
+.range-slider:hover::-webkit-slider-thumb,
+.range-slider:active::-webkit-slider-thumb,
+.range-slider:hover::-moz-range-thumb,
+.range-slider:active::-moz-range-thumb {
+  transform: scale(1.15);
+}
