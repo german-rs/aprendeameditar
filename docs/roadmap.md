@@ -5,8 +5,8 @@
 - [x] Repo creado, Astro inicializado
 - [x] Dominio `aprendeameditar.cl` configurado
 - [x] Cloudflare como DNS
-- [ ] Documentación base del proyecto
-- [ ] Pipeline de GitHub Actions funcionando (build y deploy automático a producción)
+- [x] Documentación base del proyecto
+- [x] Pipeline de GitHub Actions funcionando (build y deploy automático a producción)
 
 ## Fase 1 — MVP
 
@@ -25,7 +25,7 @@
 - [ ] Buscador/filtros por categoría, duración, tags
 - [ ] Favoritos (persistencia en `localStorage`)
 - [ ] Newsletter / captura de email
-- [ ] Analítica de uso (Cloudflare Web Analytics o similar)
+- [x] Analítica de uso (GA)
 - [ ] Optimización de imágenes y audio (lazy loading, compresión)
 
 ## Fase 3 — Crecimiento
