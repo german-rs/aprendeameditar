@@ -1,124 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Manrope:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Habilita dark: por clase, no solo por preferencia del sistema */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  /* Tipografía: serif cálida para títulos, sans limpia para el resto */
-  --font-display: "Fraunces", serif;
-  --font-sans: "Manrope", sans-serif;
-
-  /* Paleta de marca: violeta/morado profundo */
-  --color-brand-50:  #f2f1fb;
-  --color-brand-100: #e4e2f7;
-  --color-brand-200: #c9c5ef;
-  --color-brand-300: #a89fe3;
-  --color-brand-400: #8676d4;
-  --color-brand-500: #6952c2;
-  --color-brand-600: #5238a8;
-  --color-brand-700: #422d87;
-  --color-brand-800: #302066;
-  --color-brand-900: #1e1447;
-  --color-brand-950: #120c2e;
-
-  /* Paleta nocturna: azul profundo, para fondos/superficies */
-  --color-night-50:  #eef1fb;
-  --color-night-100: #d7ddf3;
-  --color-night-200: #aeb8e6;
-  --color-night-300: #8391d4;
-  --color-night-400: #5c6cc0;
-  --color-night-500: #4150a6;
-  --color-night-600: #323e86;
-  --color-night-700: #283068;
-  --color-night-800: #1b2049;
-  --color-night-900: #10142f;
-  --color-night-950: #080a1b;
-
-  /* Tokens semánticos — utilidades bg-bg, bg-surface, text-text */
-  --color-bg: var(--color-brand-50);
-  --color-surface: #ffffff;
-  --color-text: var(--color-night-950);
-
-}
-
-.dark {
-  --color-bg: var(--color-night-950);
-  --color-surface: var(--color-night-900);
-  --color-text: var(--color-brand-50);
-}
-
-/* Tokens semánticos: lo que realmente usarán los componentes */
+/* Tokens: fuente de verdad = guía de estilo del reproductor / wireframe */
 :root {
-  --color-bg: var(--color-brand-50);
-  --color-surface: #ffffff;
-  --color-text: var(--color-night-950);
+  --bg-base: #f4f1fc;
+  --accent: #7c5cfa;
+  --accent-soft: #e4dbff;
+  --text-primary: #2a1f4d;
+  --text-secondary: #756894;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-shadow: rgba(76, 44, 140, 0.18);
+  --ghost-bg: rgba(255, 255, 255, 0.45);
+  --track-bg: rgba(42, 31, 77, 0.12);
+  --blob-1: #c9b8ff;
+  --blob-2: #b8d4ff;
+  --blob-3: #ffc9e8;
+  --blob-op: 0.55;
 }
 
-.dark {
-  --color-bg: var(--color-night-950);
-  --color-surface: var(--color-night-900);
-  --color-text: var(--color-brand-50);
+html.dark {
+  --bg-base: #0b0818;
+  --accent: #9b7eff;
+  --accent-soft: rgba(155, 126, 255, 0.25);
+  --text-primary: #f1edff;
+  --text-secondary: #b3a6e0;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --ghost-bg: rgba(255, 255, 255, 0.06);
+  --track-bg: rgba(255, 255, 255, 0.14);
+  --blob-1: #4b3494;
+  --blob-2: #2b2568;
+  --blob-3: #6a2e5c;
+  --blob-op: 0.45;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
+/* Expone los tokens como utilidades: bg-base, text-ink, text-muted, bg-glass, etc. */
+@theme inline {
+  --color-base: var(--bg-base);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ink: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-glass: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-ghost: var(--ghost-bg);
+  --color-track: var(--track-bg);
+
+  --shadow-glass: 0 24px 60px var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
 }
 
-/* Sliders estilo Spotify: track fino, thumb oculto hasta hover/focus */
-.range-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
+@theme {
+  --animate-pulse-orb: pulse-orb 3s ease-in-out infinite;
 
-/* --- Track --- */
-.range-slider::-webkit-slider-runnable-track {
-  height: 4px;
-  border-radius: 9999px;
-  background: transparent; /* el relleno real lo pone el gradient inline en JSX */
-}
-
-.range-slider::-moz-range-track {
-  height: 4px;
-  border-radius: 9999px;
-  background: var(--color-brand-200);
-}
-
-.range-slider::-moz-range-progress {
-  height: 4px;
-  border-radius: 9999px;
-  background: var(--color-brand-600);
-}
-
-.range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 14px;
-  width: 14px;
-  margin-top: -5px;
-  border-radius: 9999px;
-  background: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--color-brand-600);
-  transition: transform 0.15s ease;
-}
-
-.range-slider::-moz-range-thumb {
-  height: 14px;
-  width: 14px;
-  border: none;
-  border-radius: 9999px;
-  background: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--color-brand-600);
-  transition: transform 0.15s ease;
-}
-
-.range-slider:hover::-webkit-slider-thumb,
-.range-slider:active::-webkit-slider-thumb,
-.range-slider:hover::-moz-range-thumb,
-.range-slider:active::-moz-range-thumb {
-  transform: scale(1.15);
+  @keyframes pulse-orb {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.85;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+  }
 }

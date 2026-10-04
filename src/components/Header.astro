@@ -1,44 +1,52 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-
-const navItems = [
-  { href: '/', label: 'Inicio' },
-  { href: '/meditaciones', label: 'Meditaciones' },
-  { href: '/blog', label: 'Blog' },
+const links = [
+  { href: "/meditaciones", label: "Meditaciones" },
+  { href: "/blog", label: "Blog" },
 ];
+const path = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-brand-200/50 bg-surface/80 backdrop-blur-md dark:border-night-700/50">
-  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-    <a href="/" class="flex items-center gap-2 font-display text-lg font-semibold text-brand-700 dark:text-brand-100">
-      <img src="/logo-isotipo.png" alt="Aprende a Meditar" class="h-8 w-8" />
-      <span>aprendeameditar</span>
-    </a>
+<header class="flex items-center justify-between gap-3 py-[18px]">
+  <a href="/" class="flex items-center gap-2.5 text-ink no-underline">
+    <img src="/logo-isotipo.png" alt="" width="28" height="28" class="size-7" />
+    <span class="text-[15px] font-bold">Aprende a Meditar</span>
+  </a>
 
-    <nav class="hidden gap-6 text-sm sm:flex">
-      {navItems.map((item) => (
-        <a href={item.href} class="text-night-700 transition hover:text-brand-600 dark:text-brand-100 dark:hover:text-brand-300">
-          {item.label}
+  <nav class="hidden items-center gap-[22px] text-sm text-muted sm:flex" aria-label="Principal">
+    {
+      links.map((l) => (
+        <a
+          href={l.href}
+          aria-current={path.startsWith(l.href) ? "page" : undefined}
+          class="transition-colors hover:text-ink aria-[current=page]:font-semibold aria-[current=page]:text-ink"
+        >
+          {l.label}
         </a>
-      ))}
-    </nav>
+      ))
+    }
+  </nav>
 
-    <div class="flex items-center gap-2">
-      <ThemeToggle />
-      <details class="relative sm:hidden">
-        <summary class="cursor-pointer list-none rounded-full p-2 hover:bg-brand-100 dark:hover:bg-night-800">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
-            <path d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </summary>
-        <nav class="absolute right-0 mt-2 flex w-40 flex-col gap-1 rounded-xl border border-brand-200/50 bg-surface p-3 shadow-lg dark:border-night-700/50">
-          {navItems.map((item) => (
-            <a href={item.href} class="rounded-lg px-2 py-1.5 text-sm hover:bg-brand-50 dark:hover:bg-night-800">
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </details>
-    </div>
-  </div>
+  <button
+    id="theme-toggle"
+    type="button"
+    aria-label="Cambiar tema"
+    class="flex size-[34px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-glass-border bg-ghost text-ink transition-colors hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent"
+  >
+    <svg class="dark:hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"></path>
+    </svg>
+    <svg class="hidden dark:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+    </svg>
+  </button>
 </header>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {}
+  });
+</script>

@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { cap, norm } from "../../lib/format";
+
+const items = (await getCollection("meditaciones")).sort((a, b) => a.id.localeCompare(b.id));
+const categories = [...new Map(items.map((m) => [norm(m.data.category), cap(m.data.category)])).entries()];
+
+const chip =
+  "cursor-pointer rounded-full border border-glass-border bg-ghost px-4 py-2 text-[13px] text-ink transition-colors hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-white";
+---
+
+<Layout
+  title="Meditaciones guiadas · Aprende a Meditar"
+  description="Meditaciones guiadas cortas para dormir, calmar la ansiedad, bajar el estrés o empezar desde cero."
+>
+  <h1 class="mt-4 mb-1.5 text-center font-display text-2xl font-medium italic sm:text-[30px]">Meditaciones</h1>
+  <p class="mx-auto mb-6 max-w-130 text-center text-[15px] text-muted">
+    Elige una y dale play. Cada una se abre en el reproductor del inicio.
+  </p>
+
+  <div class="mb-8 flex flex-wrap justify-center gap-2.5" id="filtros" role="group" aria-label="Filtrar por categoría">
+    <button type="button" class={chip} data-cat="todas" aria-pressed="true">Todas</button>
+    {categories.map(([key, label]) => <button type="button" class={chip} data-cat={key} aria-pressed="false">{label}</button>)}
+  </div>
+
+  <ul class="mb-10 grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-3.5">
+    {
+      items.map((m) => (
+        <li data-cat={norm(m.data.category)}>
+          <a
+            href={`/?meditacion=${m.id}`}
+            class="flex h-full items-start gap-3.5 rounded-[18px] border border-glass-border bg-glass p-[18px] text-ink no-underline backdrop-blur-xl transition-colors hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent"
+          >
+            <span class="mt-0.5 size-11 shrink-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--accent-soft),var(--accent)_75%)]" aria-hidden="true" />
+            <span class="min-w-0">
+              <span class="block font-display text-base font-medium italic">{m.data.title}</span>
+              <span class="mt-0.5 block text-xs text-muted">
+                {cap(m.data.category)} · {m.data.duration} min
+              </span>
+              <span class="mt-2 block text-[13px] text-muted">{m.data.description}</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p id="vacio" hidden class="mb-10 text-center text-[13px] text-muted">No hay meditaciones en esta categoría.</p>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("#filtros button");
+  const cards = document.querySelectorAll<HTMLLIElement>("li[data-cat]");
+  const empty = document.getElementById("vacio");
+
+  function apply(cat: string) {
+    let visible = 0;
+    cards.forEach((li) => {
+      const show = cat === "todas" || li.dataset.cat === cat;
+      li.hidden = !show;
+      if (show) visible++;
+    });
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === cat)));
+    if (empty) empty.hidden = visible > 0;
+  }
+
+  buttons.forEach((b) => b.addEventListener("click", () => apply(b.dataset.cat ?? "todas")));
+
+  // Llegada desde los chips del inicio: /meditaciones?categoria=sueno
+  const wanted = new URLSearchParams(location.search).get("categoria");
+  if (wanted && [...buttons].some((b) => b.dataset.cat === wanted)) apply(wanted);
+</script>
