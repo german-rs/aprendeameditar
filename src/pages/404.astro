@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Página no encontrada · Aprende a Meditar" description="La página que buscas no existe o cambió de lugar.">
+  <section class="flex justify-center pt-6 pb-12">
+    <div
+      class="flex w-full max-w-110 flex-col items-center gap-[18px] rounded-[32px] border border-glass-border bg-glass px-6 py-10 text-center shadow-glass backdrop-blur-[24px] backdrop-saturate-[1.6] sm:px-10"
+    >
+      <div
+        aria-hidden="true"
+        class="relative my-3 size-28 rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--accent-soft),var(--accent)_75%)] opacity-90"
+      >
+        <span class="absolute -inset-2.5 rounded-full border border-accent-soft"></span>
+        <span class="absolute -inset-5 rounded-full border border-accent-soft opacity-60"></span>
+      </div>
+
+      <p class="text-sm font-semibold text-accent">Error 404</p>
+      <h1 class="font-display text-2xl font-medium italic sm:text-[28px]">Esta página se perdió</h1>
+      <p class="max-w-80 text-[15px] text-muted">
+        No encontramos lo que buscabas. Respira un momento y vuelve al inicio, o elige una meditación.
+      </p>
+
+      <div class="mt-2 flex flex-wrap justify-center gap-3">
+        <a
+          href="/"
+          class="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white no-underline transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          Volver al inicio
+        </a>
+        <a
+          href="/meditaciones"
+          class="rounded-full border border-glass-border bg-ghost px-6 py-3 text-sm text-ink no-underline transition-colors hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent"
+        >
+          Ver meditaciones
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

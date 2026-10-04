@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+
+const fecha = (d: Date) => d.toLocaleDateString("es-CL", { dateStyle: "long", timeZone: "UTC" });
+---
+
+<Layout
+  title="Blog · Aprende a Meditar"
+  description="Guías breves y prácticas para empezar a meditar, sin jerga y sin complicarte."
+>
+  <h1 class="mt-4 mb-1.5 text-center font-display text-2xl font-medium italic sm:text-[30px]">Blog</h1>
+  <p class="mx-auto mb-8 max-w-130 text-center text-[15px] text-muted">
+    Guías breves para empezar a meditar, sin jerga y sin complicarte.
+  </p>
+
+  {
+    posts.length === 0 ? (
+      <p class="mb-10 text-center text-[13px] text-muted">Todavía no hay artículos publicados.</p>
+    ) : (
+      <ul class="mb-10 grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-3.5">
+        {posts.map((p) => (
+          <li>
+            <a
+              href={`/blog/${p.id}`}
+              class="flex h-full flex-col rounded-[18px] border border-glass-border bg-glass p-[18px] text-ink no-underline backdrop-blur-xl transition-colors hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <time datetime={p.data.publishDate.toISOString()} class="mb-1.5 text-xs text-muted">
+                {fecha(p.data.publishDate)}
+              </time>
+              <h2 class="mb-2 font-display text-base font-medium italic">{p.data.title}</h2>
+              <p class="text-[13px] text-muted">{p.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
